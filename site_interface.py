@@ -2,14 +2,21 @@ from flask import Flask, render_template, request, redirect, url_for
 from utilities import get_url_info, build_link
 from mongoengine.errors import ValidationError
 from models import FakeNews
+from bots import tweet_fact_check, update_fakenews_db
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-    fake_stories = FakeNews.objects()
-    return render_template('index.html', stories=fake_stories)
+    if request.method == 'GET':
+        fake_stories = FakeNews.objects()
+        return render_template('index.html', stories=fake_stories)
+    else:
+        fake_url = request.form['run']
+        #story = FakeNews.objects.get(fake_news_url=fake_url).fake_news_url
+        tweet_fact_check()
+        return redirect(url_for('home'))
 
 
 @app.route('/edit/<storyid>', methods=['GET', 'POST'])
@@ -23,6 +30,7 @@ def edit_story(storyid=None):
                 story[field] = request.form[field]
         try:
             story.save()
+
             return redirect(url_for('home'))
         except ValidationError:
             return redirect(url_for('home'))
@@ -48,6 +56,7 @@ def new_story():
         story.shortened_url = build_link(request.form['correct_url'])
         try:
             story.save()
+            update_fakenews_db()
             return redirect(url_for('home'))
         except ValidationError:
             return 'There was an error in the form. Try again.'

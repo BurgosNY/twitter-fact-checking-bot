@@ -2,12 +2,12 @@
 
 ## Intro
 
-A simple Python mini-app to correct people who share inaccurate information on Twitter. To make it work, you just need to input links to fake stories and to their respective debunking on an online spreadsheet. Not much coding required.
+A simple Python mini-app to correct people who share inaccurate information on Twitter. You can run this [Flask app](flask.pocoo.org/docs/0.12/quickstart/) locally to input links of fake stories and to their respective debunking on an online spreadsheet. Not much coding required. You just need to put the variables on a .env file, install the requirements and type `flask run`.
 
 
 ## Installation
 
-The easiest way: clone (download) this repository and get it running on Heroku. You'll need:  
+The easiest way to run online: clone (download) this repository and get it running on Heroku. You'll need:  
 
 * A [free Heroku account](https://www.heroku.com/);  
 * [Github account](https://github.com/);  

@@ -39,7 +39,6 @@ class TwitterBot:
 
     def search(self, link):
         search_link = link.split('://')[1]
-        print(link)
         response = tweepy.Cursor(self._api.search, q=search_link)
         # TO DO: Investigate why Twitter doesn't like https:// links
         last_tweet = last_tweet_id(link)

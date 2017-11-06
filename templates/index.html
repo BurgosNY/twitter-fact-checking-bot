@@ -58,7 +58,7 @@
       			<th>Story</th>
       			<th># Twitter Shares</th>
       			<th># Facebook Shares</th>
-      			<th>TwitterBot messages</th>
+      			<th>TwitterBot Action</th>
       		</tr>
       	</thead>
       	<tbody>
@@ -75,9 +75,11 @@
       			</td>
       			<td>{{ story.tweets }}</td>
       			<td>{{ story.facebook_shares }}</td>
-      			<td>{{ story.twitterbot_messages }}
-      				<br>
-      				<a href="/edit/{{ story.id }}">[edit]</a>
+      			<td>
+              <form class="container" id="run" method="POST">
+                <button type="submit" class="btn btn-primary" 
+                value="{{ story.source }}" name="run">Run</button>
+              </form>
       			</td>
       		</tr>
       		{% endfor %}
@@ -96,7 +98,6 @@
     <br>
     <br>
     <br>
-
 
 
     <!-- Bootstrap core JavaScript
