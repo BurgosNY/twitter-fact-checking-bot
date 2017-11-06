@@ -1,0 +1,8 @@
+tweepy
+pendulum
+python-dotenv
+BeautifulSoup4
+mongoengine
+Flask
+flask-mongoengine
+-e git+https://github.com/mobolic/facebook-sdk.git#egg=facebook-sdk

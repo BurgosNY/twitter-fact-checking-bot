@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Fact-checking bot">
+    <meta name="author" content="Pedro Burgos">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Fact-checking Twitter Bot</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="navbar-top.css" rel="stylesheet"> -->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">Impacto.jor</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Add link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Stats</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <div class="jumbotron">
+        <h1>Fact-Checking bot</h1>
+        <p class="lead">A simple way to redirect people that share falsehoods on Twitter to
+        real journalism.</p>
+      </div>
+    </main>
+
+    <!-- FakeStory form -->
+    <!-- TO DO: Change formatting -->
+    <div class="container">
+
+        <form class="container" id="editimpacto" method="POST">
+
+      <!-- URL of a "fake news" story -->
+      <div class="form-group">
+        <label for="fakeNewsUrl">URL of a story with false information</label>
+        <input type="url" class="form-control" id="fakeNewsUrl" 
+        placeholder="http://" value="{{ story.fake_news_url }}" name="fake_news_url">
+        <small id="emailHelp" class="form-text text-muted">Give preference to sites with really "fake" stories.</small>
+      </div>
+
+      <!-- Message to send. TO DO: Shows character limits. -->
+      <div class="form-group">
+        <label for="Message1">Tweet to send:</label>
+        <br>
+        <textarea name="message_1" required oninvalid="this.setCustomValidity('Please be nice!')" cols="100" style="height:200px">{{ story.message_1 }}</textarea>
+        
+      </div>
+
+      <!-- Alternative message to send. -->
+      <div class="form-group">
+        <label for="Message2">Rephrase it, please:</label>
+        <br>
+        <textarea name="message_2" required oninvalid="this.setCustomValidity('Concentrate in sending to a different site.')" cols="100" style="height:200px">{{ story.message_2 }}</textarea>
+      </div>
+
+      <!-- Link to a story that debunks the falsehood spread in the first URL -->
+      <div class="form-group">
+        <label for="CorrectUrl">Link to a fact-checked story on the subject:</label>
+        <input type="url" class="form-control" id="correct_url" placeholder="Prefer journalistic websites, if it's possible." name="correct_url" 
+        {% if story.correct_url %}
+        value={{ story.correct_url }}
+        {% endif %}
+        >
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../static/jsjquery.min.js"><\/script>')</script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+  </body>
+</html>

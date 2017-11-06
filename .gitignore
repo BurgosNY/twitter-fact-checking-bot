@@ -1,0 +1,12 @@
+# Leave out Python notebooks
+*.ipynb
+
+# Random cached stuff
+.DS_Store
+__pycache__/
+
+# Create one to store your credentials:
+.env
+
+# For Facebook SDK
+src/

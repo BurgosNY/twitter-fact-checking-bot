@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Fact-checking bot">
+    <meta name="author" content="Pedro Burgos">
+    <link rel="icon" href="../../../../favicon.ico">
+
+    <title>Fact-checking Twitter Bot</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../static/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <!-- <link href="navbar-top.css" rel="stylesheet"> -->
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+      <a class="navbar-brand" href="#">Impacto.jor</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('new_story') }}">Add link</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Stats</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main role="main" class="container">
+      <div class="jumbotron">
+        <h1>Fact-Checking bot</h1>
+        <p class="lead">A simple way to redirect people that share falsehoods on Twitter to
+        real journalism.</p>
+      </div>
+    </main>
+
+    <!-- Listagem de impactos -->
+    <!-- TO DO: Mudar a formatação -->
+    <div class="container">
+      <h3>Latest fake stories:</h3>
+
+      <table class="table table-sm">
+      	<thead>
+      		<tr style="max-height: 100px">
+      			<th></th>
+      			<th>Story</th>
+      			<th># Twitter Shares</th>
+      			<th># Facebook Shares</th>
+      			<th>TwitterBot messages</th>
+      		</tr>
+      	</thead>
+      	<tbody>
+      		{% for story in stories %}
+      		<tr>
+      			<td>
+      				<img src="{{ story.thumbnail }}" style="max-height:180px; max-width:200px">
+      			</td>
+      			<td><a href="{{ story.fake_news_url }}">{{ story.title }}</a>
+      				<br>
+      				<p>{{ story.description }}</p>
+      				<br>
+      				via {{ story.source }}
+      			</td>
+      			<td>{{ story.tweets }}</td>
+      			<td>{{ story.facebook_shares }}</td>
+      			<td>{{ story.twitterbot_messages }}
+      				<br>
+      				<a href="/edit/{{ story.id }}">[edit]</a>
+      			</td>
+      		</tr>
+      		{% endfor %}
+      	</tbody>
+      </table>
+    </div>
+
+    <div class="container">
+      <a class="btn btn-lg btn-primary" href="../new/" role="button">Add new Fake Story</a>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../static/jsjquery.min.js"><\/script>')</script>
+    <script src="../static/js/popper.min.js"></script>
+    <script src="../static/js/bootstrap.min.js"></script>
+  </body>
+</html>
