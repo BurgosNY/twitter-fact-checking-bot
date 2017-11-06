@@ -1,4 +1,6 @@
 tweepy
+gunicorn
+Jinja2
 pendulum
 python-dotenv
 BeautifulSoup4
